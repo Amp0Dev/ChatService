@@ -1,0 +1,39 @@
+<div class="container-fluid">
+	<div class="row" ng-show="MainCtrl.loggedIn">
+		<div class="col-md-3 col-sm-1"></div>
+		<div id="message-app-container" class="col-md-6 col-sm-10">
+			<div class="panel panel-primary">
+				<div class="panel-heading"><i class=" glyphicon glyphicon-list-alt"></i> Welcome {{MainCtrl.firstName}} {{MainCtrl.lastName}}</div>
+				<div class="panel-body">
+					<form name="inputForm" class="form-inline"><div id="messageInput" class="row">
+						<input type="text" class="form-control" ng-model="MainCtrl.content" placeholder="Type Message" ng-maxlength="200" required> 
+						<button ng-click="MainCtrl.sendMessage()" class="btn btn-success" ng-disabled="inputForm.$invalid">Send!</button>
+					</div></form>
+					<ul class="list-group row">
+						<li class="list-group-item" ng-repeat="m in MainCtrl.message" ng-animate="slide">
+						<h5>{{ m.name.first }} {{ m.name.last }} - {{ m.date | date }} </h5>
+						<p>{{ m.content }} </p>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+		<div class="col-sm-1 col-md-3"></div>
+	</div>
+
+	<div class="row" ng-hide="MainCtrl.loggedIn">
+		<div class="col-md-4"></div>
+		<form><div id="loggin-container" class="col-md-4">
+			<div class="panel panel-default">
+			  <div class="panel-heading">Log In</div>
+			  <div class="panel-body">
+			    <input class="form-control" type="text" ng-model="MainCtrl.firstName" placeholder="First Name">
+			    <input class="form-control" type="text" ng-model="MainCtrl.lastName" placeholder="Last Name">
+			    <button class="btn btn-primary" ng-click="MainCtrl.signIn()">Enter</button>
+			  </div>
+			</div>
+		</div></form>
+		<div class="col-md-4"></div>
+	</div>
+	<a ui-sref="admin"></a>
+</div>
